@@ -4,21 +4,13 @@
 # user-supplied command line argument
 
 import sys
+import argparse
+ 
+parser = argparse.ArgumentParser()
+parser.add_argument("error_type")
+arguments = parser.parse_args()
 
-def print_usage():
-    """Print usage and exit"""
-    sys.stderr.write("usage: python raise_err.py <error type>\n")
-    sys.stderr.write("available errors: \n")
-    sys.stderr.write("\tassertion, io, import, index\n")
-    sys.stderr.write("\tkey, name, os, type, value,\n")
-    sys.stderr.write("\tzerodivision\n")
-    sys.exit()
-
-# Check args
-if len(sys.argv) != 2:
-    print_usage()
-
-error_type = sys.argv[1]
+error_type = arguments.error_type
 
 if error_type == "assertion":
     raise AssertionError
